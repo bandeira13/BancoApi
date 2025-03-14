@@ -9,24 +9,30 @@ import java.util.List;
 @RestController
 @RequestMapping("/accounts")
 public class AccountController {
-    private List<Account> accounts = new ArrayList<>();
 
+    // Lista temporária para simular um banco de dados
+    private final List<Account> accounts = new ArrayList<>();
+
+    // Endpoint para criar uma nova conta
+    @PostMapping
+    public String createAccount(@RequestParam long id, @RequestParam String accountNumber, @RequestParam Double balance) {
+        Account newAccount = new Account(id, accountNumber, balance);
+        accounts.add(newAccount);
+        return "Conta criada com sucesso! Número da conta: " + newAccount.accountNumber();
+    }
+
+    // Endpoint para listar todas as contas
     @GetMapping
     public List<Account> getAllAccounts() {
         return accounts;
     }
 
-    @PostMapping
-    public Account createAccount(@RequestBody Account account) {
-        accounts.add(account);
-        return account;
-    }
-
+    // Endpoint para buscar uma conta pelo ID
     @GetMapping("/{id}")
-    public Account getAccountById(@PathVariable Long id) {
+    public Account getAccountById(@PathVariable long id) {
         return accounts.stream()
-                .filter(account -> account.getId().equals(id))
+                .filter(account -> account.id() == id)
                 .findFirst()
-                .orElse(null);
+                .orElse(null); // Retorna null se não encontrar a conta
     }
 }

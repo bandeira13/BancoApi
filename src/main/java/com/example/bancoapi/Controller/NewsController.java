@@ -9,7 +9,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/news")
 public class NewsController {
-    private List<News> newsList = new ArrayList<>();
+    private final List<News> newsList = new ArrayList<>();
 
     @GetMapping
     public List<News> getAllNews() {

@@ -9,7 +9,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/features")
 public class FeatureController {
-    private List<Features> features = new ArrayList<>();
+    private final List<Features> features = new ArrayList<>();
 
     @GetMapping
     public List<Features> getAllFeatures() {
