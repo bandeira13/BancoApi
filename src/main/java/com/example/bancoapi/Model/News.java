@@ -1,16 +1,15 @@
 package com.example.bancoapi.Model;
 
 public class News {
-    private Long id;
+    private String id;
     private String title;
     private String content;
 
-    // Getters e Setters
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
